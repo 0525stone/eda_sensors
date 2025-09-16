@@ -3,14 +3,13 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
-
-
 dict_savename = {"d5_normal_training":"d5normal_", "d1_out_training" : "d1out_", "d2_in_training" : "d2in_", "d3_noise_training" : "d3noise_", "d4_other_training" : "d4other_"}
 samplename =  f"../data/bms2/Training/training/d5_normal_training.csv"
 df_sample = pd.read_csv(samplename)
 df_keys = df_sample.keys()
 
+for k in df_keys:
+    print(k)
 
 keys_hz = []
 for k in df_keys:
@@ -42,7 +41,8 @@ for d_name in dict_savename.keys():
         for j, k in enumerate(keys_hz):
             arr_d[i, j] = df[k][i]
 
-   
+    
+
     print(f"{dict_savename[d_name]} : {n}")
     for i in range(n):
         path = dict_savename[d_name]
@@ -56,11 +56,14 @@ for d_name in dict_savename.keys():
         
         if (i+1)%10 ==0:
             print(f"{(i+1)} saving")
-        
+
+        str_max = f"max0 : {df['MAX0'][i]}  max1 : {df['MAX1'][i]}  max2 : {df['MAX2'][i]}  max3 : {df['MAX3'][i]}  max4 : {df['MAX4'][i]}  max5 : {df['MAX5'][i]}  max6 : {df['MAX6'][i]}  max7 : {df['MAX7'][i]}  max8 : {df['MAX8'][i]}"
+
         plt.figure(figsize=(12, 4))
         plt.bar(keys_hz,arr_d[i], width=1.0, color="steelblue")
         plt.title(f"Spectrum of {d_name} lrate = {df["lrate"][i]}%   leak level = {df["llevel"][i]}")
-        plt.xlabel("HZ")
+        # plt.xlabel("HZ")
+        plt.xlabel(str_max)
         plt.ylabel("Value")
             
         plt.savefig(filename, dpi=150, bbox_inches="tight")
