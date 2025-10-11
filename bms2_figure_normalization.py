@@ -3,13 +3,13 @@ Normalize 위해서 MAX 항목 중 최대값을 찾아야함
 
 
 """
-
 import os
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-dict_savename = {"d5_normal_training":"d5normal_", "d1_out_training" : "d1out_", "d2_in_training" : "d2in_", "d3_noise_training" : "d3noise_", "d4_other_training" : "d4other_"}
+# dict_savename = {"d5_normal_training":"d5normal_", "d1_out_training" : "d1out_", "d2_in_training" : "d2in_", "d3_noise_training" : "d3noise_", "d4_other_training" : "d4other_"}
+dict_savename = {"d2_in_training" : "d2in_", "d3_noise_training" : "d3noise_", "d4_other_training" : "d4other_"}
 
 samplename =  f"../data/bms2/Training/training/d5_normal_training.csv"
 df_sample = pd.read_csv(samplename)
@@ -97,6 +97,7 @@ for d_name in dict_savename.keys():
         plt.ylabel("Value")
 
         plt.savefig(filename, dpi=150, bbox_inches="tight")
+        plt.close()
 
         # MAX 값 포함
         plt.figure(figsize=(12, 4))

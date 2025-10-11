@@ -16,7 +16,6 @@ for k in df_keys:
     if "HZ" in k:
         keys_hz.append(k)
 
-
 for d_name in dict_savename.keys():
     print(d_name)
     print(dict_savename[d_name])
@@ -40,8 +39,6 @@ for d_name in dict_savename.keys():
     for i in range(len(df['10HZ'])):
         for j, k in enumerate(keys_hz):
             arr_d[i, j] = df[k][i]
-
-    
 
     print(f"{dict_savename[d_name]} : {n}")
     for i in range(n):
